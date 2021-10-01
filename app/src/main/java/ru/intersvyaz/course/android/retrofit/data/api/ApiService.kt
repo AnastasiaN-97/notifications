@@ -9,7 +9,7 @@ interface ApiService {
     @GET("users")
     suspend fun getUsers(): List<User>
 
-    @GET("users/{userId}") // todo
-    suspend fun getUser(userId: String): User
+    @GET("users/{userId}")
+    suspend fun getUser(@Path("userId") userId: String): User
 
 }

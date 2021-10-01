@@ -20,5 +20,7 @@ class MainRepository(
         userDao?.getAllUsers()
     }
 
-    suspend fun getUser(id: String): User? = withContext(Dispatchers.IO) { userDao?.getUser(id) }
+    suspend fun getUser(id: String): User? = apiHelper.getUser(id)
+
+    suspend fun getUser2(id: String): User? = withContext(Dispatchers.IO) { userDao?.getUser(id) }
 }
