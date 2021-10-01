@@ -52,6 +52,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
     private fun setupObservers() {
+        //из БД
         viewModel.users.observe(viewLifecycleOwner) { users ->
             users ?: return@observe
             mainAdapter.addUsers(users)

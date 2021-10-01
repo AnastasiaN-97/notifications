@@ -25,7 +25,7 @@ class UserDetailsViewModel: ViewModel() {
     }
 
     fun loadUserInfoDB(id: String) = viewModelScope.launch {
-        val result = mainRepository.getUser(id)
+        val result = mainRepository.getUser2(id)
         _user.postValue(result)
     }
 }

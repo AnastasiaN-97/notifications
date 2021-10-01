@@ -33,6 +33,7 @@ import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
 import android.R.attr.src
+import android.content.Context
 import android.content.res.Resources
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
@@ -81,9 +82,9 @@ class UserDetailsFragment : Fragment(R.layout.user_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userId?.let { viewModel.loadUserInfo(it) }
+        //передаем из БД
+        userId?.let { viewModel.loadUserInfoDB(it) }
         viewModel.user.observe(viewLifecycleOwner, userObserver)
-
     }
 
     companion object {
@@ -98,15 +99,16 @@ class UserDetailsFragment : Fragment(R.layout.user_fragment) {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
 
+
         val pendingIntent: PendingIntent = PendingIntent.getActivity(requireContext(), 0, intent, 0)
-        //val bitmapMy = BitmapFactory.decodeResource(resources, R.drawable.ic_launcher_background)
+        //val bitmapMy = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.ic_launcher_background)
 
         val builder: NotificationCompat.Builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID )
             .setSmallIcon(R.drawable.ic_notifications)
             .setContentTitle("Пользователь: $id")
             .setContentText("$name, $email ")
             .setPriority(NotificationManager.IMPORTANCE_DEFAULT)
-            //.setLargeIcon(bitmapMy)
+           // .setLargeIcon(bitmapMy)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
 

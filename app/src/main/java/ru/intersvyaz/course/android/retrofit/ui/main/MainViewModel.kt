@@ -22,7 +22,7 @@ class MainViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            val result = mainRepository.getUsers()
+            val result = mainRepository.getAllUsers()
             _users.postValue(result)
         }
     }
